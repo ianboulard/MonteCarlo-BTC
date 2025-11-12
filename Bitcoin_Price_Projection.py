@@ -54,10 +54,7 @@ def simulate_terminal_prices(
     n_sims: int = 10000,
     seed: int = 42
 ) -> Tuple[List[float], dict]:
-    """
-    Run many GBM simulations and collect terminal prices.
-    Returns (terminal_prices, summary_dict).
-    """
+  
     rng = random.Random(seed)
     terminals: List[float] = []
 
