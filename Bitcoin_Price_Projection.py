@@ -15,11 +15,7 @@ def simulate_gbm_path(
     steps_per_year: int = 252,
     rng: random.Random = random
 ) -> List[float]:
-    """
-    Simulate a single GBM price path using Euler–Maruyama.
-    S_{t+dt} = S_t * exp((mu - 0.5*sigma^2)*dt + sigma*sqrt(dt)*Z),  Z ~ N(0,1)
-    Returns the list of prices including the initial price.
-    """
+    
     dt = 1.0 / steps_per_year
     n_steps = int(years * steps_per_year)
     path = [s0]
@@ -34,10 +30,7 @@ def simulate_gbm_path(
     return path
 
 def percentile(data: List[float], p: float) -> float:
-    """
-    Return the p-th percentile (0..100) using linear interpolation between ranks.
-    Works without NumPy.
-    """
+
     if not data:
         raise ValueError("Empty data for percentile")
     if p <= 0: 
@@ -104,7 +97,7 @@ if __name__ == "__main__":
         steps_per_year=STEPS, n_sims=NSIMS, seed=SEED
     )
 
-    print("=== Monte Carlo (No NumPy) Summary ===")
+    print("=== Monte Carlo Summary =")
     for k, v in stats.items():
         if isinstance(v, float):
             print(f"{k:>28s}: {v:,.4f}")
